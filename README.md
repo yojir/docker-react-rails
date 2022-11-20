@@ -1,13 +1,15 @@
 # 環境構築
 
 ### api(Rails)側
+1. railsプロジェクトの作成
 ```
 docker-compose run --no-deps api rails new . --force  -d mysql --api
 ```
+2. gemfileを更新した状態でbuild
 ```
 docker compose build
 ```
-api/config/database.yml　に貼り付け
+3. api/config/database.yml　に貼り付け
 ```
 default: &default
   adapter: mysql2
@@ -35,10 +37,12 @@ production:
   password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
 
 ```
+4. db
 ```
 docker-compose run api rails db:create
 ```
 ### front(React)側
+1. reactプロジェクトの作成
 ```
 docker-compose run --rm front sh -c "npm install -g create-react-app && create-react-app reactapp"
 ```
